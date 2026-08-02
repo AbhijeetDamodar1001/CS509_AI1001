@@ -81,10 +81,6 @@ assignment_01
 │   ├── test_01.txt
 │   └── test_02.txt
 │
-├── outputs
-│   ├── output_01.txt
-│   └── output_02.txt
-│
 └── README.md
 ```
 
@@ -121,10 +117,10 @@ Windows
 
 ## Result Table
 
-| Mode | Test File | Input Type | Matrix Size | Expected Output | Actual Output | Algorithm Time |
+| Mode | Test File | Input Type | Matrix Size | Expected Output        | Actual Output | Algorithm Time |
 |------|-----------|------------|-------------|-----------------|---------------|----------------|
-| Individual | test_01.txt | Matrix | 2 × 3 , 3 × 2 | Same Matrix | Same Matrix | ____ ms |
-| Individual | test_02.txt | Matrix | 3 × 3 , 3 × 3 | Same Matrix | Same Matrix | ____ ms |
+| Individual | test_01.txt | Matrix | 2 × 3 , 3 × 2 | 58 64/139 154 | 58 64/139 154 | 0 ms |
+| Individual | test_02.txt | Matrix | 3 × 3 , 3 × 3 | 30 24 18/ 84 69 54/ 138 114 90  | 30 24 18/ 84 69 54/ 138 114 90 | 0 ms |
 
 ---
 
