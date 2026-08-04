@@ -1,25 +1,28 @@
 #include "simple.h"
 
-void gemmSimple(
-    const vector<vector<int>>& A,
-    const vector<vector<int>>& B,
-    vector<vector<int>>& C,
-    int M,
-    int K,
-    int N)
+vector<vector<int>> simpleMultiply(
+    const vector<vector<int>>& matrixA,
+    const vector<vector<int>>& matrixB
+)
 {
-    for(int i = 0; i < M; i++)
+    int rowsA = matrixA.size();
+    int colsA = matrixA[0].size();
+    int colsB = matrixB[0].size();
+
+    
+    vector<vector<int>> resultMatrix(rowsA, vector<int>(colsB, 0));
+
+    
+    for (int i = 0; i < rowsA; i++)
+{
+    for (int k = 0; k < colsA; k++)
     {
-        for(int j = 0; j < N; j++)
+        for (int j = 0; j < colsB; j++)
         {
-            int sum = 0;
-
-            for(int k = 0; k < K; k++)
-            {
-                sum += A[i][k] * B[k][j];
-            }
-
-            C[i][j] = sum;
+            resultMatrix[i][j] += matrixA[i][k] * matrixB[k][j];
         }
     }
+}
+
+    return resultMatrix;
 }
