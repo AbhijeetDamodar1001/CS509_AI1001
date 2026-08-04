@@ -106,21 +106,21 @@ Windows
 
 ---
 
-## Test Cases
+# Test Cases and Result Table
 
-| Test File | Matrix Size |
-|-----------|-------------|
-| test_01.txt | 2 × 3 and 3 × 2 |
-| test_02.txt | 3 × 3 and 3 × 3 |
+## Test Case 1
+
+| Mode | Test File | Input Type | Input Size / Dimensions | Expected Output | Actual Output | Algorithm Time |
+|------|-----------|------------|-------------------------|----------------|---------------|----------------|
+| Single | test_01.txt | Matrix | A = 2 × 3<br>B = 3 × 2 | 58 64 / 139 154 | 58 64 / 139 154 | Simple : **0.000 ms**<br>Blocking : **0.000 ms** |
 
 ---
 
-## Result Table
+## Test Case 2
 
-| Mode | Test File | Input Type | Matrix Size | Expected Output        | Actual Output | Algorithm Time |
-|------|-----------|------------|-------------|-----------------|---------------|----------------|
-| Individual | test_01.txt | Matrix | 2 × 3 , 3 × 2 | 58 64/139 154 | 58 64/139 154 | 0 ms |
-| Individual | test_02.txt | Matrix | 3 × 3 , 3 × 3 | 30 24 18/ 84 69 54/ 138 114 90  | 30 24 18/ 84 69 54/ 138 114 90 | 0 ms |
+| Mode | Test File | Input Type | Input Size / Dimensions | Expected Output | Actual Output | Algorithm Time |
+|------|-----------|------------|-------------------------|----------------|---------------|----------------|
+| Single | test_02.txt | Matrix | A = 100 × 100<br>B = 100 × 100 | Correct Matrix Multiplication | Correct Matrix Obtained | Simple : **17.303 ms**<br>Blocking : **13.585 ms** |
 
 ---
 
