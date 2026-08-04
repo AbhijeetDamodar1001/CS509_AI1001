@@ -90,6 +90,57 @@ assignment_01
 └── README.md
 ```
 
+## Workflow
+
+The overall working of the program is shown below.
+
+```
+                Start
+                  │
+                  ▼
+        Select Test Input File
+                  │
+                  ▼
+     Read Matrix Dimensions (M, K, N)
+                  │
+                  ▼
+         Read Matrix A and Matrix B
+                  │
+                  ▼
+      -------------------------------
+      │                             │
+      ▼                             ▼
+ Run Simple GEMM             Run Blocking GEMM
+      │                             │
+      ▼                             ▼
+Generate Result Matrix      Generate Result Matrix
+      │                             │
+      └──────────────┬──────────────┘
+                     ▼
+      Measure Execution Time
+                     │
+                     ▼
+      Display Result Matrix and Time
+                     │
+                     ▼
+                    End
+```
+
+### Workflow Explanation
+
+1. The program starts by reading the selected test file from the **tests** folder.
+
+2. The first line of the input file contains the matrix dimensions (**M, K, N**).
+
+3. Matrix **A** and Matrix **B** are then read and stored in memory.
+
+4. The driver program calls the **Simple GEMM** function to perform normal matrix multiplication. The execution time of only the algorithm is measured.
+
+5. After that, the driver calls the **Blocking GEMM** function. The matrices are processed block by block, and the execution time is measured separately.
+
+6. Both algorithms generate their own result matrices.
+
+7. Finally, the result matrix and execution time of each algorithm are displayed on the screen for comparison.
 ---
 
 ## Compilation
@@ -164,10 +215,8 @@ O(M × N)
 
 ## References
 
-- Course Notes
+- Assignment PDF
 - Class Discussion
-- C++ Documentation
-
 ---
 
 ## Conclusion
