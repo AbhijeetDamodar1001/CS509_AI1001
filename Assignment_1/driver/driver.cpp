@@ -1,98 +1,128 @@
-#include<iostream>
-#include<fstream>
-#include<vector>
-#include<chrono>
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <chrono>
+#include <cstdlib>
 
 #include "../src/simple.h"
 #include "../src/blocking.h"
 
 using namespace std;
-using namespace chrono;
+
+void readMatrices(
+    const string& fileName,
+    vector<vector<int>>& matrixA,
+    vector<vector<int>>& matrixB)
+{
+    ifstream inputFile(fileName);
+
+    if (!inputFile.is_open())
+    {
+        cout << "Error: Unable to open input file." << endl;
+        exit(EXIT_FAILURE);
+    }
+
+    int rowsA, colsA, colsB;
+
+    if (!(inputFile >> rowsA >> colsA >> colsB))
+    {
+        cout << "Error: Invalid matrix dimensions." << endl;
+        exit(EXIT_FAILURE);
+    }
+
+    matrixA.resize(rowsA, vector<int>(colsA));
+    matrixB.resize(colsA, vector<int>(colsB));
+
+    
+    for (int i = 0; i < rowsA; i++)
+    {
+        for (int j = 0; j < colsA; j++)
+        {
+            if (!(inputFile >> matrixA[i][j]))
+            {
+                cout << "Error: Invalid data in Matrix A." << endl;
+                exit(EXIT_FAILURE);
+            }
+        }
+    }
+
+    
+    for (int i = 0; i < colsA; i++)
+    {
+        for (int j = 0; j < colsB; j++)
+        {
+            if (!(inputFile >> matrixB[i][j]))
+            {
+                cout << "Error: Invalid data in Matrix B." << endl;
+                exit(EXIT_FAILURE);
+            }
+        }
+    }
+
+    inputFile.close();
+}
+
+
+void printMatrix(const vector<vector<int>>& matrix, const string& title)
+{
+    cout << "\n" << title << endl;
+
+    for (int i = 0; i < matrix.size(); i++)
+    {
+        for (int j = 0; j < matrix[i].size(); j++)
+        {
+            cout << matrix[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
 
 int main()
 {
-    ifstream fin("tests/test_02.txt");
+    const int BLOCK_SIZE = 32;
 
-    if(fin.fail())
-    {
-        cout<<"Input file not found!";
-        return 0;
-    }
+    
+    string fileName = "tests/test_01.txt";
 
-    int m,k,n;
-    fin>>m>>k>>n;
+    vector<vector<int>> matrixA;
+    vector<vector<int>> matrixB;
 
-    vector<vector<int>> A(m,vector<int>(k));
-    vector<vector<int>> B(k,vector<int>(n));
-    vector<vector<int>> C(m,vector<int>(n));
+    readMatrices(fileName, matrixA, matrixB);
 
-    for(int i=0;i<m;i++)
-    {
-        for(int j=0;j<k;j++)
-        {
-            fin>>A[i][j];
-        }
-    }
+    
 
-    for(int i=0;i<k;i++)
-    {
-        for(int j=0;j<n;j++)
-        {
-            fin>>B[i][j];
-        }
-    }
+    auto startSimple = chrono::high_resolution_clock::now();
 
-    cout<<"Simple GEMM"<<endl;
+    vector<vector<int>> simpleResult =
+        simpleMultiply(matrixA, matrixB);
 
-    auto start = high_resolution_clock::now();
+    auto endSimple = chrono::high_resolution_clock::now();
 
-    gemmSimple(A,B,C,m,k,n);
+    auto simpleTime =
+        chrono::duration<double, milli>(endSimple - startSimple);
 
-    auto end = high_resolution_clock::now();
+    printMatrix(simpleResult, "Simple GEMM Result");
 
-    for(int i=0;i<m;i++)
-    {
-        for(int j=0;j<n;j++)
-        {
-            cout<<C[i][j]<<" ";
-        }
-        cout<<endl;
-    }
+    cout << "Execution Time : "
+         << simpleTime.count()
+         << " ms" << endl;
 
-    cout<<"Time : "
-        <<duration_cast<microseconds>(end-start).count()
-        <<" us"<<endl;
+    
+    auto startBlock = chrono::high_resolution_clock::now();
 
-    for(int i=0;i<m;i++)
-    {
-        for(int j=0;j<n;j++)
-        {
-            C[i][j]=0;
-        }
-    }
+    vector<vector<int>> blockingResult =
+        blockingMultiply(matrixA, matrixB, BLOCK_SIZE);
 
-    cout<<"\nBlocking GEMM"<<endl;
+    auto endBlock = chrono::high_resolution_clock::now();
 
-    start = high_resolution_clock::now();
+    auto blockingTime =
+        chrono::duration<double, milli>(endBlock - startBlock);
 
-    gemmBlocking(A,B,C,m,k,n,2);
+    printMatrix(blockingResult, "Blocking GEMM Result");
 
-    end = high_resolution_clock::now();
-
-    for(int i=0;i<m;i++)
-    {
-        for(int j=0;j<n;j++)
-        {
-            cout<<C[i][j]<<" ";
-        }
-        cout<<endl;
-    }
-
-    cout<<"Time : "
-        <<duration_cast<microseconds>(end-start).count()
-        <<" us"<<endl;
-
-    fin.close();
+    cout << "Execution Time : "
+         << blockingTime.count()
+         << " ms" << endl;
 
     return 0;
 }
