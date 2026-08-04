@@ -2,15 +2,13 @@
 #define BLOCKING_H
 
 #include <vector>
+
 using namespace std;
 
-void gemmBlocking(
-    const vector<vector<int>>& A,
-    const vector<vector<int>>& B,
-    vector<vector<int>>& C,
-    int m,
-    int k,
-    int n,
+
+vector<vector<int>> blockingMultiply(
+    const vector<vector<int>>& matrixA,
+    const vector<vector<int>>& matrixB,
     int blockSize
 );
 
