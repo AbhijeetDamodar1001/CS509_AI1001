@@ -4,6 +4,12 @@
 
 Individual
 
+### Student Information
+- NAME: Abhijeet Damodar
+- ENTRY NO.: 2026AIM1001
+- BRANCH: ARTIFICIAL INTELLIGENCE(AI)
+- COURSE - CS509 
+
 ---
 
 ## Objective
