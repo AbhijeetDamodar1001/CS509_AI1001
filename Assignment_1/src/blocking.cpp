@@ -1,41 +1,41 @@
 #include "blocking.h"
-#include <vector>
 #include <algorithm>
 
-void gemmBlocking(
-    const vector<vector<int>>& A,
-    const vector<vector<int>>& B,
-    vector<vector<int>>& C,
-    int m,
-    int k,
-    int n,
-    int blockSize)
+vector<vector<int>> blockingMultiply(
+    const vector<vector<int>>& matrixA,
+    const vector<vector<int>>& matrixB,
+    int blockSize
+)
 {
-    for(int i = 0; i < m; i++)
-    {
-        for(int j = 0; j < n; j++)
-        {
-            C[i][j] = 0;
-        }
-    }
+    int rowsA = matrixA.size();
+    int colsA = matrixA[0].size();
+    int colsB = matrixB[0].size();
 
-    for(int ii = 0; ii < m; ii += blockSize)
+    vector<vector<int>> resultMatrix(rowsA, vector<int>(colsB, 0));
+
+    for (int ii = 0; ii < rowsA; ii += blockSize)
     {
-        for(int jj = 0; jj < n; jj += blockSize)
+        for (int kk = 0; kk < colsA; kk += blockSize)
         {
-            for(int kk = 0; kk < k; kk += blockSize)
+            for (int jj = 0; jj < colsB; jj += blockSize)
             {
-                for(int i = ii; i < min(ii + blockSize, m); i++)
+                int rowLimit = min(ii + blockSize, rowsA);
+                int colLimitA = min(kk + blockSize, colsA);
+                int colLimitB = min(jj + blockSize, colsB);
+
+                for (int i = ii; i < rowLimit; i++)
                 {
-                    for(int j = jj; j < min(jj + blockSize, n); j++)
+                    for (int k = kk; k < colLimitA; k++)
                     {
-                        for(int x = kk; x < min(kk + blockSize, k); x++)
+                        for (int j = jj; j < colLimitB; j++)
                         {
-                            C[i][j] += A[i][x] * B[x][j];
+                            resultMatrix[i][j] += matrixA[i][k] * matrixB[k][j];
                         }
                     }
                 }
             }
         }
     }
+
+    return resultMatrix;
 }
