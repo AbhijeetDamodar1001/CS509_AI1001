@@ -61,7 +61,7 @@ int main()
         inputFile >> word >> source;
         inputFile.close();
 
-        // CSR conversion is done before timing
+       
         csrgraph graph = convert_to_csr(adjacencyList);
 
         bool negativeCycle = false;
