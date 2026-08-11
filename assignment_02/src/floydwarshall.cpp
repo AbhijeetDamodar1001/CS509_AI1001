@@ -11,7 +11,7 @@ void floydWarshall(
 
     negativeCycle = false;
 
-    // Try every vertex as an intermediate vertex
+  
     for (int k = 0; k < vertices; k++)
     {
         for (int i = 0; i < vertices; i++)
@@ -31,7 +31,7 @@ void floydWarshall(
         }
     }
 
-    // Check diagonal for a negative cycle
+   
     for (int i = 0; i < vertices; i++)
     {
         if (distance[i][i] < 0)
