@@ -1,5 +1,16 @@
 # Assignment 2 - Shortest Path Algorithms
 
+## Assignment Type
+
+Individual
+
+### Student Information
+- NAME: Abhijeet Damodar
+- ENTRY NO.: 2026AIM1001
+- BRANCH: ARTIFICIAL INTELLIGENCE(AI)
+- COURSE - CS509 
+
+---
 ## 1. Overview
 
 This assignment contains two shortest path algorithms:
