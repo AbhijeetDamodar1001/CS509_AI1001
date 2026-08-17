@@ -6,13 +6,9 @@ using namespace std;
 int main()
 {
     int choice;
-
-    cout << "==============================" << endl;
-    cout << "       CS509 WRAPPER" << endl;
-    cout << "==============================" << endl;
-
     cout << "1. Assignment 1" << endl;
     cout << "2. Assignment 2" << endl;
+    cout << "3. Assignment 3" << endl;
     cout << "Enter choice: ";
     cin >> choice;
 
@@ -42,6 +38,10 @@ int main()
     else if (choice == 2)
     {
         system("cd /d assignment_02 && assignment.exe");
+    }
+    else if (choice == 3)
+    {
+        system("cd /d assignment_03 && assignment.exe");
     }
     else
     {
