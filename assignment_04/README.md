@@ -260,21 +260,21 @@ The actual timing can vary depending on the system, compiler settings and system
 
 | Test File | Vertices | Execution Time |
 |-----------|---------:|---------------:|
-| color_10.txt | 10 | Measured during run |
-| color_100.txt | 100 | Measured during run |
-| color_10000.txt | 10,000 | Measured during run |
-| color_50000.txt | 50,000 | Measured during run |
-| color_100000.txt | 100,000 | Measured during run |
+| color_10.txt | 10 | 0ms |
+| color_100.txt | 100 | 0ms |
+| color_10000.txt | 10,000 | 3.067ms |
+| color_50000.txt | 50,000 | 20.54ms |
+| color_100000.txt | 100,000 | 38.614ms |
 
 ## PageRank
 
 | Test File | Vertices | Execution Time |
 |-----------|---------:|---------------:|
-| pagerank_10.txt | 10 | Measured during run |
-| pagerank_100.txt | 100 | Measured during run |
-| pagerank_1000.txt | 1,000 | Measured during run |
-| pagerank_10000.txt | 10,000 | Measured during run |
-| pagerank_50000.txt | 50,000 | Measured during run |
+| pagerank_10.txt | 10 | 0ms |
+| pagerank_100.txt | 100 | 0ms |
+| pagerank_1000.txt | 1,000 | 0ms |
+| pagerank_10000.txt | 10,000 | 0ms |
+| pagerank_50000.txt | 50,000 | 2.772ms |
 
 ---
 
