@@ -234,26 +234,6 @@ The execution time is measured using C++ timing functions.
 
 ---
 
-# Performance Measurement
-
-The execution time is measured using the C++ `chrono` library.
-
-The basic timing method is:
-
-```cpp
-auto start = chrono::high_resolution_clock::now();
-
-/* algorithm */
-
-auto end = chrono::high_resolution_clock::now();
-```
-
-The difference between the start and end time is used to calculate the execution time.
-
-The actual timing can vary depending on the system, compiler settings and system load, so the values obtained by running the program should be used for the final performance table.
-
----
-
 # Performance Table
 
 ## Graph Coloring
